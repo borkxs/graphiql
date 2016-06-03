@@ -111,6 +111,7 @@ export class GraphiQL extends React.Component {
       getItem: PropTypes.func,
       setItem: PropTypes.func
     }),
+    extraKeys: PropTypes.object,
     defaultQuery: PropTypes.string,
     onEditQuery: PropTypes.func,
     onEditVariables: PropTypes.func,
@@ -317,6 +318,7 @@ export class GraphiQL extends React.Component {
                 schema={this.state.schema}
                 value={this.state.query}
                 onEdit={this.handleEditQuery}
+                extraKeys={this.props.extraKeys}
                 onHintInformationRender={this.handleHintInformationRender}
               />
               <div className="variable-editor" style={variableStyle}>

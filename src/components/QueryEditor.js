@@ -41,6 +41,7 @@ export class QueryEditor extends React.Component {
   static propTypes = {
     schema: PropTypes.instanceOf(GraphQLSchema),
     value: PropTypes.string,
+    extraKeys: PropTypes.object,
     onEdit: PropTypes.func,
     onHintInformationRender: PropTypes.func,
   }
@@ -77,7 +78,7 @@ export class QueryEditor extends React.Component {
         completeSingle: false,
       },
       gutters: [ 'CodeMirror-linenumbers', 'CodeMirror-foldgutter' ],
-      extraKeys: {
+      extraKeys: Object.assign({
         'Cmd-Space': () => this.editor.showHint({ completeSingle: true }),
         'Ctrl-Space': () => this.editor.showHint({ completeSingle: true }),
         'Alt-Space': () => this.editor.showHint({ completeSingle: true }),
@@ -88,7 +89,7 @@ export class QueryEditor extends React.Component {
         'Ctrl-Right': 'goSubwordRight',
         'Alt-Left': 'goGroupLeft',
         'Alt-Right': 'goGroupRight',
-      }
+      }, this.props.extraKeys)
     });
 
     this.editor.on('change', this._onEdit);
